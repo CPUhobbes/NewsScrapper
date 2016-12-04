@@ -1,0 +1,107 @@
+<canvas id="matrix" >Sorry Browser Doesn't Support HTML5</canvas>
+	<div class="containers containerMargin">
+		<div class="box siteTitle">h4x0r N3ws</div>
+	</div>
+
+	<div class="containers containerMargin">
+		<div class="box">
+			{{#each articles}}
+			<div class="articleContainer" id="story_{{@index}}" data-articleNum="{{@index}}">
+				<div class="borderTitleBox">
+					<p class="articleTitleText">{{articleTitle}}</p>
+				</div>
+
+				<div class="containerMargin">
+					<p class="articleBodyText">
+						{{articleBody}}
+					</p>
+				</div>
+
+				<div class="containerMargin">
+					<p class="articleLinkText"><a href="{{articleLink}}">{{articleLink}}</a></p>
+
+				</div>
+				
+			</div>
+			{{/each}}
+			
+			<div class="arrowContainer">
+				<div class="arrowBox noselect" id="arrowLeft" data-position="1">
+				 	<p> &#171; </p>
+				</div>
+				<div class="arrowBox noselect" id="arrowRight" data-position="1">
+					 <p> &#187; </p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="containers containerMargin">
+
+		<div class="box">
+			<div class="commentContainer">
+
+				<div class="borderTitleBox">
+					<p class="commentHeaderText">Comments</p>
+				</div>
+
+				<div class="commentMargin">
+
+					<div class="commentBox commentTitleBoxWidth">
+
+					{{#each comments}}
+						<!-- HANDLEBAR CODE GOES HERE -->
+						<div class="commentLine" id="commentTitle_{{@index}}" data-commentNum="{{@index}}">
+							<div class="inlineLeft">
+								<p class="commentTitleText"> {{commentTitle}}</p>
+							</div>
+							<div class="inlineRight noselect">
+								<p class="deleteComment" data-deleteNum="{{@index}}">X</p>
+							</div>
+						</div>
+						
+					{{/each}}
+						
+					</div>
+
+					<div class="commentBox commentTextBoxWidth">
+
+						<!-- HANDLEBAR CODE GOES HERE -->
+						{{#each comments}}
+						<p class="commentText" id="commentText_{{@index}}">{{commentBody}}</p>
+						{{/each}}
+					</div>
+
+				</div>
+
+			</div>
+
+		
+		</div>
+
+	</div>
+
+
+	<div class="containers containerMargin">
+
+		<div class="box">
+			<div class="addCommentContainer">
+
+				<div class="borderTitleBox">
+					<p class="commentHeaderText">Add Comment</p>
+				</div>
+
+				<div class="addCommentBox">
+					<p class="addingComments">Title: <input type="text" id="titleText" class="commentTextbox"></p>
+					<p class="addingComments">Comment: <input type="text" id="titleText" class="commentTextbox"></p>
+					<p class="submitComments"><button type="button" class="submitButton">Submit</button></p>
+
+				</div>
+
+			</div>
+
+		
+		</div>
+
+	</div>
