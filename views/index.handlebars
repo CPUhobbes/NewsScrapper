@@ -6,19 +6,19 @@
 	<div class="containers containerMargin">
 		<div class="box">
 			{{#each articles}}
-			<div class="articleContainer" id="story_{{@index}}" data-articleNum="{{@index}}">
+			<div class="articleContainer" id="story_{{@index}}" data-articleNum="{{@index}}" data-obj_id="{{_id}}">
 				<div class="borderTitleBox">
-					<p class="articleTitleText">{{articleTitle}}</p>
+					<p class="articleTitleText">{{title}}</p>
 				</div>
 
 				<div class="containerMargin">
 					<p class="articleBodyText">
-						{{articleBody}}
+						{{byline}}
 					</p>
 				</div>
 
 				<div class="containerMargin">
-					<p class="articleLinkText"><a href="{{articleLink}}">{{articleLink}}</a></p>
+					<p class="articleLinkText"><a href="{{url}}">{{url}}</a></p>
 
 				</div>
 				
@@ -50,11 +50,11 @@
 
 					<div class="commentBox commentTitleBoxWidth">
 
-					{{#each comments}}
+					{{#each articles.comments}}
 						<!-- HANDLEBAR CODE GOES HERE -->
 						<div class="commentLine" id="commentTitle_{{@index}}" data-commentNum="{{@index}}">
 							<div class="inlineLeft">
-								<p class="commentTitleText"> {{commentTitle}}</p>
+								<p class="commentTitleText"> {{title}}</p>
 							</div>
 							<div class="inlineRight noselect">
 								<p class="deleteComment" data-deleteNum="{{@index}}">X</p>
@@ -68,8 +68,8 @@
 					<div class="commentBox commentTextBoxWidth">
 
 						<!-- HANDLEBAR CODE GOES HERE -->
-						{{#each comments}}
-						<p class="commentText" id="commentText_{{@index}}">{{commentBody}}</p>
+						{{#each articles.comments}}
+						<p class="commentText" id="commentText_{{@index}}">{{body}}</p>
 						{{/each}}
 					</div>
 
