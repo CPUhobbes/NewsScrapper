@@ -7,8 +7,9 @@ var articleSchema = new Schema({
   url:   {type: String, trim: true},
   comments: [{ 
     title: {type: String, required:"Forgot Comment Title"},
-    body: {type: String, required:"Forgot Comment Body"}
-  }]
+    body: {type: String, required:"Forgot Comment Body"},
+  	_id: false }]
+
   
 });
 

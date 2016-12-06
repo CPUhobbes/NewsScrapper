@@ -1,242 +1,260 @@
-body{
-				font-family: Courier;
-				background-color: #000000;
-				color:#00ff00;
-			}
-			canvas{
-				position: absolute;
-				z-index: -1;
-				margin-top: -20px;
-				margin-left: -5px;
-			}
-			.containers{
-				width: 100%;
-				height:auto;
-				text-align: center;
-			}
-			.containerMargin{
-				margin-top: 20px;
-			}
-			.box{
-				display: inline-block;
-				padding: 20px;
-				background-color: #000000;
-				border: solid 3px #00ff00;
-			}
+body {
+    font-family: Courier;
+    background-color: #000000;
+    color: #00ff00;
+}
 
-			.siteTitle{	
-				font-size: 56px;
-			}
-			.articleContainer{
-				width: 600px;
-				height: 250px;
-				display: none;
+canvas {
+    position: absolute;
+    z-index: -1;
+    margin-top: -20px;
+    margin-left: -5px;
+}
 
-			}
+.containers {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
 
-			.arrowBox{
-				display: inline-block;
-				background-color: #00ff00;
-				width: 295px;
-				height: auto;
-				color: #000000;
-				font-size: 40px;
-				font-weight: bolder;
-				border: solid 1px #00ff00;
+.containerMargin {
+    margin-top: 20px;
+}
 
-			}
-			.articleTitleText{
-				font-size: 28px;
-				font-weight: bold;
-				text-align: left;
-			}	
+.box {
+    display: inline-block;
+    padding: 20px;
+    background-color: #000000;
+    border: solid 3px #00ff00;
+}
 
-			.borderTitleBox{
-				border-bottom: solid 2px #00ff00; 
-			}
-			
-			.articleBodyText{
-				text-align: left;
-				font-size: 14px;
-			}
-			.articleLinkText{
-				text-align: left;
-				font-size: 14px;
+.siteTitle {
+    font-size: 56px;
+}
 
-			}
+.articleContainer {
+    width: 600px;
+    height: 250px;
+    display: none;
+}
 
-			.commentBox{
-				overflow:auto;
-				height:75px;
-				display: inline-block;
-				
-			}
+.arrowBox {
+    display: inline-block;
+    background-color: #00ff00;
+    width: 295px;
+    height: auto;
+    color: #000000;
+    font-size: 40px;
+    font-weight: bolder;
+    border: solid 1px #00ff00;
+}
 
-			.commentMargin{
-				margin-top:10px;
-			}
+.articleTitleText {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+}
 
-			.commentTitleBoxWidth{
-				width: 200px;
-			}
+.borderTitleBox {
+    border-bottom: solid 2px #00ff00;
+}
 
-			.commentTextBoxWidth{
-				width: 370px;
-				border-left: solid 2px #00ff00;
-				padding-left: 15px;
-			}
+.articleBodyText {
+    text-align: left;
+    font-size: 14px;
+}
 
-			.commentContainer{
-				width: 600px;
-				height: 100px;
-			}
-			.addCommentContainer{
-				width: 600px;
-				height: 120px;
-			}
+.articleLinkText {
+    text-align: left;
+    font-size: 14px;
+}
 
-			.commentHeaderText{
-				font-size: 24px;
-				font-weight: bold;
-				text-align: left;
-			}
+.commentBox {
+    overflow: auto;
+    height: 75px;
+    display: inline-block;
+}
 
-			.commentTitleText{
-				text-align: left;
-				font-size: 12px;
-				margin-right: 5px;
-			
-			}
+.commentMargin {
+    margin-top: 10px;
+}
 
-			.commentText{
-				font-size: 12px;
-				text-align: left;
-				display: none;
-			}
+.commentTitleBoxWidth {
+    width: 200px;
+}
 
-			.deleteComment{
-				color: #ff0000;
-			}
-			.inlineLeft{
-				display: inline-block;
-				float: left;
-				width: 85%;
+.commentTextBoxWidth {
+    width: 370px;
+    border-left: solid 2px #00ff00;
+    padding-left: 15px;
+}
 
-			}
-			.inlineRight{
-				display: inline-block;
-				float: right;
-				padding-right: 10px;
+.commentContainer {
+    width: 600px;
+    height: 100px;
+}
 
-			}
-			.commentLine{
-				clear: both;
-			}
-			.addingComments{
-				text-align: left;
-				font-size: 12px;
-			}
-			.addCommentBox{
-				margin-top: 10px;
-			}
-			.submitComments{
-				margin-top: 15px;
-				text-align: center;
+.addCommentContainer {
+    width: 600px;
+    height: 120px;
+}
 
-			}
-			.submitButton{
-				color: #00ff00;
-				background-color: #000000;
-				border: solid 1px #00ff00;
-				font-size: 16px;
-				padding: 6px;
-				font-weight: bold;
-				outline: none;
+.commentHeaderText {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+}
 
-			}
-			.commentTextbox{
-				margin-top: 5px;
-				background-color: #000000;
-				outline: none;
-				border: none;
-				border-bottom: solid 1px #00ff00;
-				color: #00ff00;
-				width: 300px;
+.commentTitleText {
+    text-align: left;
+    font-size: 12px;
+    margin-right: 5px;
+}
 
-			}
+.commentText {
+    font-size: 12px;
+    text-align: left;
+    display: none;
+}
 
+.deleteComment {
+    color: #ff0000;
+}
 
-			/* Scrollbar styles */
-			.commentBox::-webkit-scrollbar {
-				width: 12px;
-				height: 12px;
-			}
+.inlineLeft {
+    display: inline-block;
+    float: left;
+    width: 85%;
+}
 
-			.commentBox::-webkit-scrollbar-track {
-			border: 1px solid #00ff00;
+.inlineRight {
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+}
 
-			}
+.commentLine {
+    clear: both;
+}
 
-			.commentBox::-webkit-scrollbar-thumb {
-			background: #00ff00;  
+.addingComments {
+    text-align: left;
+    font-size: 12px;
+}
 
-			}
+.addCommentBox {
+    margin-top: 10px;
+}
 
-			.commentBox::-webkit-scrollbar-thumb:hover {
-			background: #0000ff;  
-			}
+.submitComments {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.submitButton {
+    color: #00ff00;
+    background-color: #000000;
+    border: solid 1px #00ff00;
+    font-size: 16px;
+    padding: 6px;
+    font-weight: bold;
+    outline: none;
+}
+
+.commentTextbox {
+    margin-top: 5px;
+    background-color: #000000;
+    outline: none;
+    border: none;
+    border-bottom: solid 1px #00ff00;
+    color: #00ff00;
+    width: 300px;
+}
 
 
-			/*Hover styles */
-			.commentTitleText:hover{
-				color: #000000;
-				background-color: #00ff00;
+/* Scrollbar styles */
 
-			}
-			.submitButton:hover{
-				color: #000000;
-				background-color: #00ff00;
-				border: solid 1px #00ff00;
-			}
+.commentBox::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
 
-			.arrowBox:hover{
-				background-color: #000000;
-				color: #00ff00;
-				cursor: pointer;
-			}
-			.deleteComment:hover{
-				color: #0000ff;
-				cursor: pointer;
+.commentBox::-webkit-scrollbar-track {
+    border: 1px solid #00ff00;
+}
 
-			}
+.commentBox::-webkit-scrollbar-thumb {
+    background: #00ff00;
+}
 
-			/* unvisited link */
-			a:link {
-			    color: blue;
-			}
+.commentBox::-webkit-scrollbar-thumb:hover {
+    background: #0000ff;
+}
 
-			/* visited link */
-			a:visited {
-			    color: blue;
-			}
 
-			/* mouse over link */
-			a:hover {
-			    color: red;
-			}
+/*Hover styles */
 
-			/* selected link */
-			a:active {
-			    color: blue;
-			}
+.commentTitleText:hover {
+    color: #000000;
+    background-color: #00ff00;
+}
 
-			/* No Selectable text*/
-			.noselect {
-				-webkit-touch-callout: none; /* iOS Safari */
-				-webkit-user-select: none; /* Chrome/Safari/Opera */
-				-khtml-user-select: none; /* Konqueror */
-				-moz-user-select: none; /* Firefox */
-				-ms-user-select: none; /* Internet Explorer/Edge */
-				user-select: none; /* Non-prefixed version, currently
+.submitButton:hover {
+    color: #000000;
+    background-color: #00ff00;
+    border: solid 1px #00ff00;
+}
 
-			}
+.arrowBox:hover {
+    background-color: #000000;
+    color: #00ff00;
+    cursor: pointer;
+}
+
+.deleteComment:hover {
+    color: #0000ff;
+    cursor: pointer;
+}
+
+
+/* unvisited link */
+
+a:link {
+    color: blue;
+}
+
+/* visited link */
+
+a:visited {
+    color: blue;
+}
+
+/* mouse over link */
+
+a:hover {
+    color: red;
+}
+
+/* selected link */
+
+a:active {
+    color: blue;
+}
+
+/* No Selectable text*/
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently */
+
+}

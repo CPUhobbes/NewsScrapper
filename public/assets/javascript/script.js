@@ -112,7 +112,22 @@ $(".deleteComment").on("click", function(){
 	$("#commentTitle_"+deleteNum).remove();
 	$("#commentText_"+deleteNum).remove();
 	
-})
+});
+
+$('#sendComment').on("click", function() {
+
+  	$.ajax({
+        type: "PUT",
+        url: '/commentAdd/5844ac05c88c7f543efa3443',
+        data: {
+            title: "testing123",
+            body: "coolghjkghjkgio"
+        }
+
+    });
+
+});
+
 
 
 
