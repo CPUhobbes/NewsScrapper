@@ -101,13 +101,14 @@ app.put("/comment/:id", function(req, res) {
 });
 
 app.delete("/comment/:id/", function(req, res) {
-	Article.findOneAndRemove({_id: req.params.id}, {title:req.body.title}, 
-		
+	Article.findByIdAndUpdate(req.params.id, {$pull: { comments: {title:req.body.title}}}, { new: true }, 
 	    function(err, result) {
 	        if(err){
         		console.log(err);
+        		res.json({});
     		}
-    		//res.json(result.comments);
+    		res.json(result.comments);
+
     	}
 	);
 });
@@ -119,7 +120,12 @@ app.get("/comment/:id", function(req, res) {
 	        if(err){
         		console.log(err);
     		}
-    		res.json(result.comments);
+    		if(result.comments){
+    			res.json(result.comments);
+    		}
+    		else{
+    			res.json({})
+    		}
     	}
 	);
 });

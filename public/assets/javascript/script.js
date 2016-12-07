@@ -4,6 +4,7 @@ var numComments;
 function showComments(id){
 	numComments = $('.commentText').length;
 	console.log(numComments);
+	$("#commentText_0").css({"display": "block"});
 	if(numComments>0){
 		$("#commentText_"+id).css({"display": "block"});
 	}
@@ -26,6 +27,8 @@ function createDivBlock(index, value){
 }
 
 function loadComments(id){
+	$('#commentTitleBox').empty();
+	$('#commentBodyBox').empty();
 	var url = '/comment/'+$('#story_'+id).attr('data-obj_id');
 	$.ajax({
         type: "GET",
@@ -147,9 +150,9 @@ $("#arrowRight").on("click", function(){
 
 });
 
-$(document).on("click",".commentText", function(){
+$(document).on("click",".inlineLeft", function(){
 
-	var commentNum = $(this).attr("data-commentNum");
+	var commentNum = $(this).parent().attr("data-commentNum");
 	$(".commentText").css("display", "none");
 	console.log(commentNum);
 	$("#commentText_"+commentNum).css({"display":"block"});
@@ -161,14 +164,16 @@ $(document).on("click", ".deleteComment", function(){
 	var data = {title:$("#commentTitle_"+deleteNum+' p').html().trim()};
 	var article_id = $('#sendComment').attr('data-currentArticle');
 	var url = '/comment/'+$('#story_'+article_id).attr('data-obj_id');
-	// $("#commentText_"+deleteNum).remove();
-	// $("#commentText_1").css({"display": "block"});
+	$("#commentText_"+deleteNum).remove();
+	//$("#commentText_1").css({"display": "block"});
 	//showComments(deleteNum);
 		$.ajax({
         type: "DELETE",
         url: url,
         data: data
     }).done(function(result) {
+
+    	loadComments(article_id);
 
 
     });
@@ -194,13 +199,7 @@ $('#sendComment').on("click", function() {
         data: data
     }).done(function(result) {
 
-    	$('#commentTitleBox').empty();
-		$('#commentBodyBox').empty();
-
-    	result.forEach(function(value, index){
-			createDivBlock(index, value);
-    		console.log(value, index);
-    	})
+    	loadComments(article_id);
     });
 });
 
