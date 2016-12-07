@@ -1,18 +1,67 @@
 var numArticles;
 var numComments;
 
+function showComments(id){
+	numComments = $('.commentText').length;
+	console.log(numComments);
+	if(numComments>0){
+		$("#commentText_"+id).css({"display": "block"});
+	}
+
+}
+
+function createDivBlock(index, value){
+	var divBlock = '<div class=\"commentLine\" id=\"commentTitle_'+index+'\" data-commentNum=\"'+index+'\">'+
+							'<div class=\"inlineLeft\">'+
+								'<p class=\"commentTitleText\">'+value.title+'</p>'+
+							'</div>'+
+							'<div class=\"inlineRight noselect\">'+
+								'<p class=\"deleteComment\" data-deleteNum=\"'+index+'\">X</p>'+
+							'</div>'+
+						'</div>';
+
+	var divBody = '<p class=\"commentText\" id=\"commentText_'+index+'\">'+value.body+'</p>';
+	$('#commentTitleBox').append(divBlock);
+	$('#commentBodyBox').append(divBody);
+}
+
+function loadComments(id){
+	var url = '/comment/'+$('#story_'+id).attr('data-obj_id');
+	$.ajax({
+        type: "GET",
+        url: url,
+    }).done(function(result) {
+    	result.forEach(function(value, index){
+    		createDivBlock(index, value);
+    		console.log(value, index);
+    	})
+    showComments(id);
+    });
+}
+
+function updateCommentBox(id){
+	$("#story_"+id).css("display", "block");
+	$('#sendComment').attr('data-currentArticle', id);
+	$('#commentTitleBox').empty();
+	$('#commentBodyBox').empty();
+	loadComments(id);
+
+
+}
+
+
+
 
 $(document).ready(function(){
 
+	loadComments(0);
+
 	//Number of Articles and comments present on page
 	numArticles = $('.articleContainer').length;
-	numComments = $('.commentText').length;
+	
 
 	//Display first story and comment
 	$("#story_0").css("display", "block");
-	if(numComments>0){
-		$("#commentText_0").css("display", "block");
-	}
 
 	//Set data backword to last element
 	$("#arrowLeft").attr("data-position", numArticles-1);
@@ -70,9 +119,8 @@ $("#arrowLeft").on("click", function(){
 		$("#story_"+(newPostion+1)).css("display", "none");
 		$("#arrowRight").attr("data-position", (newPostion+1));
 	}
-
-	$("#story_"+newPostion).css("display", "block");
-
+	updateCommentBox(newPostion);
+	
 
 });
 
@@ -94,38 +142,66 @@ $("#arrowRight").on("click", function(){
 		$("#arrowLeft").attr("data-position", (newPostion-1));
 	}
 
-	$("#story_"+newPostion).css("display", "block");
+	updateCommentBox(newPostion);
 
 
 });
 
-$(".commentLine").on("click", function(){
+$(document).on("click",".commentText", function(){
+
 	var commentNum = $(this).attr("data-commentNum");
 	$(".commentText").css("display", "none");
-	$("#commentText_"+commentNum).css("display", "block");
+	console.log(commentNum);
+	$("#commentText_"+commentNum).css({"display":"block"});
 	
 });
 
-$(".deleteComment").on("click", function(){
+$(document).on("click", ".deleteComment", function(){
 	var deleteNum = $(this).attr("data-deleteNum");
+	var data = {title:$("#commentTitle_"+deleteNum+' p').html().trim()};
+	var article_id = $('#sendComment').attr('data-currentArticle');
+	var url = '/comment/'+$('#story_'+article_id).attr('data-obj_id');
+	// $("#commentText_"+deleteNum).remove();
+	// $("#commentText_1").css({"display": "block"});
+	//showComments(deleteNum);
+		$.ajax({
+        type: "DELETE",
+        url: url,
+        data: data
+    }).done(function(result) {
 
-	$("#commentTitle_"+deleteNum).remove();
-	$("#commentText_"+deleteNum).remove();
-	
+
+    });
+
 });
 
 $('#sendComment').on("click", function() {
 
+	var article_id = $('#sendComment').attr('data-currentArticle');
+	var url = '/comment/'+$('#story_'+article_id).attr('data-obj_id');
+
+	var data = {title: $("#commentTitle").val(),
+				body:$("#commentBody").val()						
+			};
+	$("#commentTitle").val("");
+	$("#commentBody").val("");
+	
+	console.log(url, data);
+
   	$.ajax({
         type: "PUT",
-        url: '/commentAdd/5844ac05c88c7f543efa3443',
-        data: {
-            title: "testing123",
-            body: "coolghjkghjkgio"
-        }
+        url: url,
+        data: data
+    }).done(function(result) {
 
+    	$('#commentTitleBox').empty();
+		$('#commentBodyBox').empty();
+
+    	result.forEach(function(value, index){
+			createDivBlock(index, value);
+    		console.log(value, index);
+    	})
     });
-
 });
 
 

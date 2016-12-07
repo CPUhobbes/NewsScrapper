@@ -79,17 +79,53 @@ app.get('/', function(req, res) {
     });
 });
 
-app.put("/commentAdd/:id", function(req, res) {
+app.put("/comment/:id", function(req, res) {
 	Article.findByIdAndUpdate(req.params.id, {$push: {comments: {title: req.body.title, body: req.body.body }}},
 		{safe: true, upsert: true, new : true},
         function(err, model) {
         	if(err){
             	console.log(err);
         	}
+        	Article.findOne({_id: req.params.id}, 
+		
+	        	function(err, result) {
+	        		if(err){
+	            		console.log(err);
+	        		}
+	        		res.json(result.comments);
+	        	}
+        	);
+       	}
+    );
 
-        });
-	res.send("Added");
 });
+
+app.delete("/comment/:id/", function(req, res) {
+	Article.findOneAndRemove({_id: req.params.id}, {title:req.body.title}, 
+		
+	    function(err, result) {
+	        if(err){
+        		console.log(err);
+    		}
+    		//res.json(result.comments);
+    	}
+	);
+});
+
+app.get("/comment/:id", function(req, res) {
+	Article.findOne({_id: req.params.id}, 
+		
+	    function(err, result) {
+	        if(err){
+        		console.log(err);
+    		}
+    		res.json(result.comments);
+    	}
+	);
+});
+
+
+
 
 var port = 3000;
 app.listen(port);
