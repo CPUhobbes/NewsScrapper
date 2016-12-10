@@ -23,7 +23,9 @@ app.use(bodyParser.urlencoded({
 var Article = require("./models/articleModel.js");
 
 //Mongoose Connection
-mongoose.connect('mongodb://localhost/news_scrapper');
+mongoose.connect('mongodb://heroku_4k444lsz:f961utl3kai6g3l3sg05mka8vh@ds127948.mlab.com:27948/heroku_4k444lsz');
+
+//mongoose.connect('mongodb://localhost/news_scrapper');
 var db = mongoose.connection;
 
 //Parses all the html from webpage and then adds to database

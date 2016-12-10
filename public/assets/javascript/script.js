@@ -52,9 +52,6 @@ function updateCommentBox(id){
 
 }
 
-
-
-
 $(document).ready(function(){
 
 	loadComments(0);
